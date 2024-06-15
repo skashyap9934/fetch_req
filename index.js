@@ -11,7 +11,7 @@ app.get("/products", async (req, res) => {
   res.status(200).json({ products: products });
 });
 
-app.get("/", () => {
+app.get("/", (req, res) => {
   res.json({ message: "Homepage" });
 });
 
