@@ -11,6 +11,10 @@ app.get("/products", async (req, res) => {
   res.status(200).json({ products: products });
 });
 
+app.get("/", () => {
+  res.json({ message: "Homepage" });
+});
+
 const PORT = 8080;
 app.listen(PORT, () => {
   console.log("Server is UP and Running");
