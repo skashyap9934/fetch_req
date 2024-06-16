@@ -26,7 +26,7 @@ const temp = express.Router();
 temp.get("/", async (req, res) => {
   const collection = mongoose.connection.collection("products");
   const products = await collection.find().limit(11).toArray();
-  res.json({ products: products });
+  res.json({ msg: "HIHIHIHI" });
 });
 
 app.use("/user", userRouter);
