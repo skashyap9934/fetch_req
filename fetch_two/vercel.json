@@ -1,6 +1,10 @@
 {
   "version": 2,
-  "rewrites": [{ "source": "/api/(.*)", "destination": "/" }],
+  "rewrites": [
+    { "source": "/api/models/(.*)", "destination": "/src/models/$1.js" },
+    { "source": "/api/routers/(.*)", "destination": "/src/routers/$1.js" },
+    { "source": "/api/config/(.*)", "destination": "/src/config/$1.js" }
+  ],
   "builds": [
     {
       "src": "index.js",
