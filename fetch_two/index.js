@@ -1,51 +1,29 @@
-// index.js
 const express = require("express");
-const ProductsRouter = require("./src/routes/routes.products");
+const cors = require("cors");
+const connectToDatabase = require("./src/config/database");
+const userRouter = require("./src/routers/user.router");
+const productsRouter = require("./src/routers/products.router");
+const { wishlistsRouter } = require("./src/routers/wishlist.router");
+const bagsRouter = require("./src/routers/bags.router");
+require("dotenv").config();
+
+const PORT = process.env.PORT || 8080;
+
 const app = express();
-const port = process.env.PORT || 3000;
 
-// Middleware to parse JSON bodies
 app.use(express.json());
+app.use(cors());
+app.use("/user", userRouter);
+app.use("/products", productsRouter);
+app.use("/wishlist", wishlistsRouter);
+app.use("/bag", bagsRouter);
 
-// Root Endpoint
 app.get("/", (req, res) => {
-  res.send("Hello, World!");
+  res.status(200).json({ message: "Welcome to HomePage" });
 });
 
-// /products Endpoint
-app.use("/products", ProductsRouter);
-
-// /shopping Endpoint
-app.post("/shopping", (req, res) => {
-  const shoppingItem = req.body;
-  // Normally, you would save this to a database
-  res.json({ message: "Item added to shopping list", item: shoppingItem });
-});
-
-// /dashboard Endpoint
-app.get("/dashboard", (req, res) => {
-  const dashboardData = {
-    user: "John Doe",
-    stats: {
-      totalOrders: 25,
-      totalSpent: 5000,
-      favoriteProduct: "Laptop",
-    },
-  };
-  res.json(dashboardData);
-});
-
-// /wishlist Endpoint
-app.get("/wishlist", (req, res) => {
-  const wishlist = [
-    { id: 1, name: "Gaming Console" },
-    { id: 2, name: "Electric Guitar" },
-    { id: 3, name: "4K TV" },
-  ];
-  res.json(wishlist);
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is UP & Running at PORT ${PORT}`);
+  connectToDatabase();
+  console.log(`Connected to the database successfully`);
 });
