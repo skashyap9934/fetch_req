@@ -11,5 +11,39 @@
       "src": "index.js",
       "use": "@vercel/node"
     }
+  ],
+  "routes": [
+    {
+      "src": "/api/config/database.js",
+      "dest": "/src/config/database.js"
+    },
+    {
+      "src": "/api/models/address.js",
+      "dest": "/src/models/address.js"
+    },
+    {
+      "src": "/api/models/payments.js",
+      "dest": "/src/models/payments.js"
+    },
+    {
+      "src": "/api/models/user.js",
+      "dest": "/src/models/user.js"
+    },
+    {
+      "src": "/api/routers/bags.js",
+      "dest": "/src/routers/bags.js"
+    },
+    {
+      "src": "/api/routers/products.js",
+      "dest": "/src/routers/products.js"
+    },
+    {
+      "src": "/api/routers/user.js",
+      "dest": "/src/routers/user.js"
+    },
+    {
+      "src": "/api/routers/wishlist.js",
+      "dest": "/src/routers/wishlist.js"
+    }
   ]
 }
